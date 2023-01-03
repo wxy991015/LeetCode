@@ -10,11 +10,26 @@ def countLetters(s: str) -> int:
                 one_distinct_letter_substr += 1
     return one_distinct_letter_substr
 
-# version 2 - 
+# version 2 - Faster
 def countLetters1(s: str) -> int:
-    grp = [list(g) for k, g in groupby(s)]
-    return sum([len(l) * (len(l) + 1) // 2 for l in grp])
-    
+    one_distinct_letter_substr = 0
+    i, j = 0, 0
+    while i < len(s) and j < len(s):
+        while j + 1 < len(s) and s[j] == s[j+1]:
+            j += 1
+        one_distinct_letter_substr += (1+(j-i+1)) * (j-i+1) // 2
+        i = j + 1
+        j = i
+        """
+        if s[j] == s[i]:
+            j += 1
+        else:
+            count = j - i
+            one_distinct_letter_substr += (count + 1) * count // 2
+            i = j + 1
+            j = i
+        """
+    return one_distinct_letter_substr
 
 s = "aaaaaaaaaa"
 print(f"Output: {countLetters1(s)}")
