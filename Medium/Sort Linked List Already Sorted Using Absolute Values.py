@@ -5,6 +5,7 @@ class ListNode:
         self.val = val
         self.next = next
 
+# version 1
 def sortLinkedList(head: Optional[ListNode]) -> Optional[ListNode]:
     value = []
     while head:
@@ -17,3 +18,5 @@ def sortLinkedList(head: Optional[ListNode]) -> Optional[ListNode]:
         sorted_linked_list.next = ListNode(i)
         sorted_linked_list = sorted_linked_list.next
     return result.next
+
+# version 2 - Faster
