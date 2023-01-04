@@ -32,6 +32,7 @@ def mergeNodes1(head: Optional[ListNode]) -> Optional[ListNode]:
         if p.val == 0:
             current = current.next
             current.val = merged_nodes_sum
+            merged_nodes_sum = 0
         else: merged_nodes_sum += p.val
         p = p.next
     current.next = None
