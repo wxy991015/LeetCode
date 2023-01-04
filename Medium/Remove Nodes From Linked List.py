@@ -5,7 +5,7 @@ class ListNode:
         self.val = val
         self.next = next
 
-# version 1 - Does not work
+# version 1 - Does not work properly
 def removeNodes(head: Optional[ListNode]) -> Optional[ListNode]:
     p = ListNode(0, head)
     current = p.next
@@ -43,3 +43,4 @@ def removeNodes(self, head: Optional[ListNode]) -> Optional[ListNode]:
     return result.next
 
 # version 3
+# Try to delete nodes inside original list instead of creating new list
