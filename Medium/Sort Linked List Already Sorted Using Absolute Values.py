@@ -20,3 +20,16 @@ def sortLinkedList(head: Optional[ListNode]) -> Optional[ListNode]:
     return result.next
 
 # version 2 - Faster
+def sortLinkedList1(head: Optional[ListNode]) -> Optional[ListNode]:
+    p = head
+    while p.next:
+        if p.val > p.next.val:
+            temp = p.next
+            # cut current node from original linked list
+            p.next = temp.next
+            # insert current node to the head
+            temp.next = head
+            head = temp # why I need to add this line?
+        else:
+            p = p.next
+    return head
