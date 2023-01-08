@@ -20,3 +20,21 @@ def deleteDuplicatesUnsorted(head: ListNode) -> ListNode:
     return deleted_linked_list.next
 
 # version 2
+def deleteDuplicatesUnsorted1(head: ListNode) -> ListNode:
+    cnt = dict()
+    cur = head
+    while cur:
+        cnt[cur.val] = cnt.get(cur.val, 0) + 1
+        cur = cur.next
+    aux = {k for k, v in cnt.items() if v > 1}
+    dummy = ListNode(0)
+    prev = dummy
+    cur = head
+    while cur:
+        while cur and cur.val in aux:
+            cur = cur.next
+        prev.next = cur
+        if cur:
+            prev = cur
+            cur = cur.next
+    return dummy.next
