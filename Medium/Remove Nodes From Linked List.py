@@ -19,9 +19,9 @@ def removeNodes(head: Optional[ListNode]) -> Optional[ListNode]:
         current = current.next
     return head
 
-# version 2 - Work but time exceed the time
+# version 2 - Work but time limit exceeded
 # creating new nodes might take longer time
-def removeNodes(self, head: Optional[ListNode]) -> Optional[ListNode]:
+def removeNodes1(head: Optional[ListNode]) -> Optional[ListNode]:
     p = ListNode()
     result = p
     current, after = head, head.next
@@ -44,3 +44,21 @@ def removeNodes(self, head: Optional[ListNode]) -> Optional[ListNode]:
 
 # version 3
 # Try to delete nodes inside original list instead of creating new list
+def removeNodes2(head: Optional[ListNode]) -> Optional[ListNode]:
+    def reverse(node, prev=None):
+        if not node:
+            return prev
+        tmp = node.next
+        node.next = prev
+        return reverse(tmp, node)
+    node = reverse(head)
+    max_so_far = head.val
+    dummy = ListNode(0)
+    result = dummy
+    while node:
+        if max_so_far <= node.val:
+            max_so_far = node.val
+            result.next = ListNode(node.val)
+            result = result.next
+        node = node.next
+    return reverse(dummy.next)
