@@ -5,6 +5,7 @@ class ListNode:
         self.val = val
         self.next = next
 
+# version 1
 def deleteMiddle(head: Optional[ListNode]) -> Optional[ListNode]:
     current = p = head
     size = 0
@@ -20,4 +21,5 @@ def deleteMiddle(head: Optional[ListNode]) -> Optional[ListNode]:
         i += 1
     p.next = p.next.next
     return head
-    
+
+# version 2
