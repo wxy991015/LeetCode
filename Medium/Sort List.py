@@ -5,6 +5,5 @@ class ListNode:
         self.val = val
         self.next = next
 
-def nodesBetweenCriticalPoints(head: Optional[ListNode]) -> list[int]:
-    result = [-1, -1]
-    return result
+def sortList(head: Optional[ListNode]) -> Optional[ListNode]:
+    return head
