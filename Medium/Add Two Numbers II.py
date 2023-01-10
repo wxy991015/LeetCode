@@ -21,5 +21,3 @@ def addTwoNumbers(l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[Li
         p.next = ListNode(i)
         p = p.next
     return result.next
-
-# version 2
