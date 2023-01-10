@@ -27,3 +27,4 @@ def nextLargerNodes(head: Optional[ListNode]) -> list[int]:
         i += 1
         current = current.next
     return answer
+

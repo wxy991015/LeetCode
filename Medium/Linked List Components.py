@@ -7,4 +7,5 @@ class ListNode:
 
 def numComponents(head: Optional[ListNode], nums: list[int]) -> int:
     connected_components = 0
+    
     return connected_components
