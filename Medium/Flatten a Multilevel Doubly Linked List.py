@@ -8,4 +8,17 @@ class Node:
         self.child = child
 
 def flatten(head: 'Optional[Node]') -> 'Optional[Node]':
-    return head
+    p = Node(0)
+    result = p
+    current = head
+    while current:
+        if current.child == None:
+            p.next = Node(current.val)
+        else:
+            temp = current
+            while temp:
+                p.next = flatten(temp)
+                temp = temp.next
+        p = p.next
+        current = current.next
+    return result.next
