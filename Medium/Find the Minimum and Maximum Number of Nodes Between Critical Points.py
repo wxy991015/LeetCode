@@ -19,10 +19,10 @@ def nodesBetweenCriticalPoints(head: Optional[ListNode]) -> list[int]:
         p = p.next
     if len(critical_points) < 2:
         return result
-    minDistance = maxDistance = critical_points[1] - critical_points[0]
+    minDistance = critical_points[1] - critical_points[0]
+    maxDistance = critical_points[-1] - critical_points[0]
+    print(critical_points)
     for i in range(2, len(critical_points)):
         if critical_points[i] - critical_points[i-1] < minDistance:
             minDistance = critical_points[i] - critical_points[i-1]
-        elif critical_points[i] - critical_points[i-1] > maxDistance:
-            maxDistance = critical_points[i] - critical_points[i-1]
     return [minDistance, maxDistance]
