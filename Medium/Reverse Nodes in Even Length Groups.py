@@ -7,17 +7,17 @@ class ListNode:
 
 def reverseEvenLengthGroups(head: Optional[ListNode]) -> Optional[ListNode]:
     def reverse(head: Optional[ListNode]):
-        if head == None or head.next == None:
+        if head is None or head.next is None:
             return head
         result = reverse(head.next)
-        result.next = head
+        head.next.next = head
         head.next = None
-        return head
+        return result
     current = head
     temp_result = ListNode()
     result = temp_result
+    group_length = 1
     while current:
-        group_length = 1
         current_length = 0
         p = ListNode()
         temp = p
@@ -27,9 +27,11 @@ def reverseEvenLengthGroups(head: Optional[ListNode]) -> Optional[ListNode]:
             current = current.next
             current_length += 1
         temp = temp.next
-        reverse(temp)
+        if current_length % 2 == 0:
+            temp = reverse(temp)
         while temp:
             temp_result.next = ListNode(temp.val)
             temp_result = temp_result.next
             temp = temp.next
+        group_length += 1
     return result.next
