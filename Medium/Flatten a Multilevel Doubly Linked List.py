@@ -7,6 +7,7 @@ class Node:
         self.next = next
         self.child = child
 
+# version 1 - Does not work properly
 def flatten(head: 'Optional[Node]') -> 'Optional[Node]':
     p = Node(0)
     result = p
@@ -22,3 +23,5 @@ def flatten(head: 'Optional[Node]') -> 'Optional[Node]':
         p = p.next
         current = current.next
     return result.next
+
+# version 2 - use stack

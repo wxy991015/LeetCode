@@ -27,7 +27,7 @@ def mergeInBetween(list1: ListNode, a: int, b: int, list2: ListNode) -> ListNode
     return list1
 
 # version 2
-def mergeInBetween1(self, list1: ListNode, a: int, b: int, list2: ListNode) -> ListNode:
+def mergeInBetween1(list1: ListNode, a: int, b: int, list2: ListNode) -> ListNode:
     curr=list1
     t=0
     var=None
