@@ -29,3 +29,15 @@ def nextLargerNodes(head: Optional[ListNode]) -> list[int]:
     return answer
 
 # version 2:
+def nextLargerNodes(head: Optional[ListNode]) -> list[int]:
+    position = -1
+    answer, stack = [], []
+    while head:
+        position += 1
+        answer.append(0)
+        while stack and stack[-1][1] < head.val:
+            index, value = stack.pop()
+            answer[index] = head.val
+        stack.append((position, value))
+        head = head.next
+    return answer
