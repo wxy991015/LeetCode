@@ -25,3 +25,32 @@ def flatten(head: 'Optional[Node]') -> 'Optional[Node]':
     return result.next
 
 # version 2 - use stack
+def flatten1(head: 'Optional[Node]') -> 'Optional[Node]':
+    if not head: return head
+    dummy = Node(0)
+    cur, stack = dummy, [head]
+    while stack:
+        tmp = stack.pop()
+        if tmp.next: stack.append(tmp.next)
+        if tmp.child: stack.append(tmp.child)
+        cur.next = tmp
+        tmp.prev = cur
+        tmp.child = None
+        cur = tmp
+    dummy.next.prev = None
+    return dummy.next
+
+"""
+head ==>
+1 --> 2 --> 3 --> 4 --> 5 --> 6
+            7 --> 8 --> 9 --> 10
+                  11 --> 12
+
+stack = [head]
+tmp = head
+stack = []
+stack = [2 --> ]
+current = 0 --> head
+tmp.child = None
+current = tmp
+"""
