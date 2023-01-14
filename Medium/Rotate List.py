@@ -5,7 +5,7 @@ class ListNode:
         self.val = val
         self.next = next
 
-def rotateRight(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+def rotateRight(head: Optional[ListNode], k: int) -> Optional[ListNode]:
     def rotate(head: Optional[ListNode]):
         current = head
         while current.next.next:
