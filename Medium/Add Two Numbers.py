@@ -15,7 +15,6 @@ def addTwoNumbers(l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[Li
         if temp_sum < 10:
             digit_sum += temp_sum
         else:
-            
-            
+            pass
         l1 = l1.next
         l2 = l2.next
