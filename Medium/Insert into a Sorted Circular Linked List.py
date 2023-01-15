@@ -7,8 +7,11 @@ class Node:
 
 def insert(head: 'Optional[Node]', insertVal: int) -> 'Node':
     if not head:
-        head = Node(insertVal)
+        node = Node(insertVal)
+        head = node
+        node.next = head
         return head
+    """
     if not head.next:
         head.next = Node(insertVal)
         return head
@@ -21,4 +24,18 @@ def insert(head: 'Optional[Node]', insertVal: int) -> 'Node':
             break
         prev = prev.next
         after = after.next
+    return head
+    """
+    original_head = head
+    while head:
+        if head.next.val > head.val:
+            if insertVal >= head.val and insertVal <= head.next.val:
+                break
+        elif head.next.val < head.val:
+            if insertVal >= head.val or insertVal <= head.next.val:
+                break
+        elif head.next == original_head:
+            break
+        head = head.next
+    head.next = Node(insertVal, head.next)
     return head
