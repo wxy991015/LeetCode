@@ -20,7 +20,7 @@ def totalSteps(nums: List[int]) -> int:
     return steps
 
 # version 2
-def totalSteps(nums: List[int]) -> int:
+def totalSteps1(nums: List[int]) -> int:
     st = [[nums[0], 0]]
     # nums = [10,6,5,10,15]
     ans = 0
@@ -28,6 +28,7 @@ def totalSteps(nums: List[int]) -> int:
         t = 0
         while st and st[-1][0] <= a:
             t = max(t, st[-1][1])
+            print(st)
             st.pop()
         if st: 
             t += 1
@@ -38,4 +39,4 @@ def totalSteps(nums: List[int]) -> int:
     return ans
 
 nums = [10,6,5,10,15]
-print(f"Output: {totalSteps(nums)}")
+print(f"Output: {totalSteps1(nums)}")
