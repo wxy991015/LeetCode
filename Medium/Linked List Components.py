@@ -21,7 +21,7 @@ def numComponents(head: Optional[ListNode], nums: list[int]) -> int:
     return connected_components
 
 # version 2 - work but not very fast
-def numComponents(self, head: Optional[ListNode], nums: List[int]) -> int:
+def numComponents(head: Optional[ListNode], nums: List[int]) -> int:
     connected_components = 0
     while head:
         if head.val in nums and (head.next == None or head.next.val not in nums):
