@@ -5,26 +5,33 @@ class ListNode:
         self.val = val
         self.next = next
 
+# version 1 - time limit exceeded
 def removeZeroSumSublists(head: Optional[ListNode]) -> Optional[ListNode]:
-    result = ListNode()
-    p = result
-    nums = []
-    current = head
-    while current:
-        nums.append(current)
-        current = current.next
+    nodes = []
+    while head:
+        nodes.append(head.val)
+        head = head.next
     while True:
+        consecutive_sequences = []
+        start, end = 0, 0
         flag = False
-        if len(nums) > 1:
-            for i in range(1, len(nums)):
-                if nums[i].val + nums[i-1] == 0:
+        for i in range(len(nodes)):
+            for j in range(i+1, len(nodes)+1):
+                temp_sequence = nodes[i:j]
+                if sum(temp_sequence) == 0 and len(temp_sequence) > len(consecutive_sequences):
                     flag = True
-                    nums.remove(nums[i-1])
-                    nums.remove(nums[i-1])
-                    break
+                    consecutive_sequences = temp_sequence
+                    start, end = i, j
+        del nodes[start:end]
         if not flag:
             break
-    for i in nums:
-        p.next = i
+    while nodes.count(0) != 0:
+        nodes.remove(0)
+    result = ListNode()
+    p = result
+    for i in nodes:
+        p.next = ListNode(i)
         p = p.next
     return result.next
+
+# version 2 - Hash Table
