@@ -31,3 +31,17 @@ def removeElements(self, head: Optional[ListNode], val: int) -> Optional[ListNod
         else:
             current = current.next
     return head
+
+# version 3
+def removeElements(head: Optional[ListNode], val: int) -> Optional[ListNode]:
+    if head == None:
+        return head
+    while head and head.val == val:
+        head = head.next
+    current = head
+    while current:
+        # current.next exists when current exists
+        while current.next and current.next.val == val:
+            current.next = current.next.next
+        current = current.next
+    return head
