@@ -1,4 +1,5 @@
 from typing import Optional
+import collections
 
 class ListNode:
     def __init__(self, val=0, next=None):
@@ -35,3 +36,19 @@ def removeZeroSumSublists(head: Optional[ListNode]) -> Optional[ListNode]:
     return result.next
 
 # version 2 - Hash Table
+def removeZeroSumSublists(head: Optional[ListNode]) -> Optional[ListNode]:
+    current = dummy = ListNode(0)
+    dummy.next = head
+    prefix = 0
+    seen = collections.OrderedDict()
+    while current:
+        prefix += current.val
+        if prefix not in seen:
+            seen[prefix] = current
+        else:
+            node = seen[prefix]
+            node.next = current.next
+            while list(seen.keys())[-1] != prefix:
+                seen.popitem()
+        current = current.next
+    return dummy.next
