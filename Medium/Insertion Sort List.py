@@ -6,13 +6,14 @@ class ListNode:
         self.next = next
 
 def insertionSortList(head: Optional[ListNode]) -> Optional[ListNode]:
-    sorted_list = head
-    sorted_list.next = None
-    unsorted_list = head.next
+    result = ListNode()
     current = head
-    while unsorted_list:
-        current_node = unsorted_list
-        temp = unsorted_list.next
-        current_node.next = None
-        
-    return head
+    while current:
+        previous = result
+        while previous.next and previous.next.val <= current.val:
+            previous = previous.next
+        after = current.next
+        current.next = previous.next
+        previous.next = current
+        current = after
+    return result.next
