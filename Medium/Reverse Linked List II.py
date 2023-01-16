@@ -6,23 +6,16 @@ class ListNode:
         self.next = next
 
 def reverseBetween(head: Optional[ListNode], left: int, right: int) -> Optional[ListNode]:
-    def reverse(head: Optional[ListNode]):
-        if head is None or head.next is None:
-            return head
-        result = reverse(head.next)
-        head.next.next = head
-        head.next = None
-        return result
     if left == right:
         return head
-    count = 1
-    start = head
-    while count != left:
-        start = start.next
-        count += 1
-    p = start
-    while count != right:
-        start = start.next
-        count += 1
-    start = reverse(p)
-    return head
+    result = ListNode(0)
+    p = result
+    nodes = []
+    while head:
+        nodes.append(head.val)
+        head = head.next
+    nodes[left-1:right] = nodes[left-1:right][::-1]
+    for i in nodes:
+        p.next = ListNode(i)
+        p = p.next
+    return result.next
