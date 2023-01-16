@@ -1,14 +1,11 @@
 from typing import Optional
 
-
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
 
 # version 1
-
-
 def reverseBetween(head: Optional[ListNode], left: int, right: int) -> Optional[ListNode]:
     if left == right:
         return head
@@ -30,7 +27,6 @@ def reverseBetween(head, m, n):
         return None
     left, right = head, head
     stop = False
-
     def recurseAndReverse(right, m, n):
         nonlocal left, stop
         # base case. Don't proceed any further
