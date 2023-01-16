@@ -4,8 +4,6 @@ class ListNode:
         self.next = next
 
 # version 1
-
-
 def mergeInBetween(list1: ListNode, a: int, b: int, list2: ListNode) -> ListNode:
     start = list1
     count = 1
