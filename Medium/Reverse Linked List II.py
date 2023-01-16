@@ -5,7 +5,7 @@ class ListNode:
         self.val = val
         self.next = next
 
-# version 1
+# version 1 - while loop
 def reverseBetween(head: Optional[ListNode], left: int, right: int) -> Optional[ListNode]:
     if left == right:
         return head
