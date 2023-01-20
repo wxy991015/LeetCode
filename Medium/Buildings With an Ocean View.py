@@ -20,6 +20,14 @@ def findBuildings1(heights: List[int]) -> List[int]:
         result_stack.append(i)
     return result_stack
 
+# version 3 - loop from last
+def findBuildings2(heights: List[int]) -> List[int]:
+    result = [len(heights)-1]
+    for i in range(len(heights)-2, -1, -1):
+        if heights[i] > heights[result[-1]]:
+            result.append(i)
+    result.reverse()
+    return result
 
 heights = [4,3,2,1]
-print(f"Output: {findBuildings1(heights)}")
+print(f"Output: {findBuildings2(heights)}")
