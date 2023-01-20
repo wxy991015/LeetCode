@@ -1,4 +1,5 @@
 from typing import List
+from collections import Counter
 
 # version 1 - use set intersection method
 def longestCommonSubsequence(arrays: List[List[int]]) -> List[int]:
@@ -9,8 +10,9 @@ def longestCommonSubsequence(arrays: List[List[int]]) -> List[int]:
             result = result & arrays_set[i]
     return sorted(list(result))
 
-# version 2 -
-
+# version 2 - use Counter from collection package and list comprehension
+def longestCommonSubsequence1(arrays: List[List[int]]) -> List[int]:
+    return [n for (n, cnt) in Counter(num for arr in arrays for num in arr).items() if cnt == len(arrays)]
 
 arrays = [[1,3,4], [1,4,7,9]]
-print(f"Output: {longestCommonSubsequence(arrays)}")
+print(f"Output: {longestCommonSubsequence1(arrays)}")
