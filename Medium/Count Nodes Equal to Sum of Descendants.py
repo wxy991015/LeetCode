@@ -5,7 +5,8 @@ class TreeNode:
         self.val = val
         self.left = left
         self.right = right
-        
+
+# version 1 - time limit exceeds  
 def equalToDescendants(root: Optional[TreeNode]) -> int:
     nodes = 0
     def descendantsSum(root: Optional[TreeNode]) -> int:
@@ -38,3 +39,15 @@ def equalToDescendants(root: Optional[TreeNode]) -> int:
             if ds == node.right.val:
                 nodes += 1
     return nodes
+
+def equalToDescendants(root: Optional[TreeNode]) -> int:
+    def fn(node: TreeNode):
+        nonlocal result
+        if not node: return 0
+        sum_of_descendants = fn(node.left) + fn(node.right)
+        if sum_of_descendants == node.val:
+            result += 1
+        return sum_of_descendants + node.val
+    result = 0
+    fn(root)
+    return result
