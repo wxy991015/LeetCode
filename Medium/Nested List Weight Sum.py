@@ -1,4 +1,5 @@
-from typing import List, Deque
+from typing import List
+from collections import deque
 
 class NestedInteger:
     def __init__(self, value=None):
@@ -56,7 +57,7 @@ def depthSum(nestedList: List[NestedInteger]) -> int:
 
 # version 2 - breadth-first search (use deque)
 def depthSum(nestedList: List[NestedInteger]) -> int:
-    queue = Deque(nestedList)
+    queue = deque(nestedList)
     depth = 1
     total = 0
     while len(queue) > 0:
