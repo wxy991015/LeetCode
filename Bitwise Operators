@@ -1,5 +1,32 @@
 Bitwise Operators
+Bitwise AND Operator (&):
+if both of them are 1, we get 1
+x = 0b11001011
+y = 0b10101101
+x & y = 0b10001001 ==> (1, 1) => 1, otherwise 0
 
+Bitwise OR Operator (|):
+if one of them are 1, we get 1
+x = 0b11001011
+y = 0b10101101
+x ^ y = 0b11101111 ==> (0, 0) => 0, otherwise 1
+
+Bitwise XOR Operator (^):
+if one of them are 1, but not both, we get 1
+x = 0b11001011
+y = 0b10101101
+x ^ y = 0b01100110 ==> (1, 1) => 0, (0, 0) => 0, otherwise 1
+
+Bitwise NOT Operator (~):
+x = 0b11001011
+
+Bitwise SHIFT LEFT Operator (<<):
+x = 0b11001011
+x << 1 (number of 0) ==> 0b110010110 ==> add 0 to the end of x
+
+Bitwise SHIFT RIGHT Operator (>>):
+x = 0b11001011
+x >> 1 (number of digits) ==> 0b1100101 ==> remove from right
 
 Author: Xiaoyang Wei
 Course: Data Structures and Algorithms
