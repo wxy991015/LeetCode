@@ -36,26 +36,3 @@ def getLonelyNodes(self, root: Optional[TreeNode]) -> List[int]:
             if not node.left:
                 result.append(node.right.val)
     return result
-
-"""
-def getLonelyNodes(self, root: TreeNode) -> List[int]:
-        stk = [root]
-        res = []
-        
-        while stk:
-            node = stk.pop()
-            
-            if node.left:
-                stk.append(node.left)
-                
-                if not node.right:
-                    res.append(node.left.val)
-                    
-            if node.right:
-                stk.append(node.right)
-                
-                if not node.left:
-                    res.append(node.right.val)
-        
-        return res
-"""
