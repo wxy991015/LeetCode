@@ -7,7 +7,7 @@ def countSquares(matrix: List[List[int]]) -> int:
     while i <= side_length:
         submatrics = []
         temp_side_length, s = i, 0
-        while s 
+        while s:
             for t in range(side_length):
                 submatrics.append(matrix[s][t])
         if not 0 in submatrics:
