@@ -5,15 +5,20 @@ class TreeNode:
         self.right = right
         
 def balanceBST(root: TreeNode) -> TreeNode:
-    if root.left == None and root.right == None:
+    if not root.left and not root.right:
         return root
     result = TreeNode(root.val)
-    if root.left:
-        if result.left == None:
-            result.left = TreeNode(root.left.val)
-            result = result.left
-    else:
-        if result.left:
-            pass
+    result_left, result_right = result.left, result.right
+    def helper(root: TreeNode) -> None:
+        nonlocal result, result_left, result_right
+        if not root: return
+        if not result_left:
+            result_left = TreeNode(root.val)
+            result_left = result_left.left
+        if not result_right:
+            result_right = TreeNode(root.val)
+            result_right = result_right.right
+        helper(root.left)
+        helper(root.right)
     return result
         
