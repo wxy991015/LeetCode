@@ -24,3 +24,21 @@ def deepestLeavesSum(root: Optional[TreeNode]) -> int:
     return deepest_leaves_sum
 
 # version 2 - iterative
+def deepestLeavesSum(root: Optional[TreeNode]) -> int:
+    deepest_leaves_sum = 0
+    depth = 0
+    stk = [(root, depth)]
+    while stk:
+        node, current_depth = stk.pop()
+        if not node.left and not node.right:
+            if depth < current_depth:
+                deepest_leaves_sum = node.val
+                depth = current_depth
+            elif depth == current_depth:
+                deepest_leaves_sum += node.val
+        else:
+            if node.left:
+                stk.append((node.left, current_depth+1))
+            if node.right:
+                stk.append((node.right, current_depth+1))
+    return deepest_leaves_sum
