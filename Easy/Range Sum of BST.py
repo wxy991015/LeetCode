@@ -20,4 +20,13 @@ def rangeSumBST1(root: Optional[TreeNode], low: int, high: int) -> int:
 # version 2: iteration
 def rangeSumBST2(root: Optional[TreeNode], low: int, high: int) -> int:
     nodes_sum = 0
-    
+    stk = [root]
+    while stk:
+        node = stk.pop()
+        if low <= node.val <= high:
+            nodes_sum += node.val
+        if node.left:
+            stk.append(node.left)
+        if node.right:
+            stk.append(node.right)
+    return nodes_sum
