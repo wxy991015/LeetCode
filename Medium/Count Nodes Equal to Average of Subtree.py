@@ -32,3 +32,22 @@ def averageOfSubtree(root: Optional[TreeNode]) -> int:
     equal_to_average += averageOfSubtree(root.left)
     equal_to_average += averageOfSubtree(root.right)
     return equal_to_average
+
+# version 2 - faster recursive solution
+def averageOfSubtree(root: Optional[TreeNode]) -> int:
+    equal_to_average = 0
+    def sumSizeOfNodes(root: Optional[TreeNode]):
+        nonlocal equal_to_average
+        if not root:
+            return 0, 0
+        left_sum, left_num = sumSizeOfNodes(root.left)
+        right_sum, right_num = sumSizeOfNodes(root.right)
+        nodes_sum = root.val + left_sum + right_sum
+        nodes_num = 1 + left_num + right_num
+        if nodes_sum // nodes_num == root.val:
+            equal_to_average += 1
+        return nodes_sum, nodes_num
+    if not root:
+        return 0
+    sumSizeOfNodes(root)
+    return equal_to_average
