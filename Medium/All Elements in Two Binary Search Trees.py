@@ -18,5 +18,3 @@ def getAllElements(root1: TreeNode, root2: TreeNode) -> List[int]:
     helper(root1, root1_elements)
     helper(root2, root2_elements)
     return sorted(root1_elements + root2_elements)
-
-# version 2 - binary search
