@@ -8,14 +8,10 @@ class TreeNode:
         self.right = right
         
 def bstFromPreorder(preorder: List[int]) -> Optional[TreeNode]:
+    if not preorder:
+        return None
     root = TreeNode(preorder[0])
-    index = 1
-    def helper(root: TreeNode, index: int):
-        nonlocal preorder
-        if index == len(preorder):
-            return
-        if preorder[index] < root.val:
-            root.left = TreeNode(preorder[index])
-        else:
-            root.right = TreeNode(preorder[index])
-        root
+    new_index = bisect.bisect(preorder, preorder[0])
+    root.left = bstFromPreorder(preorder[1:new_index])
+    root.right = bstFromPreorder(preorder[new_index:])
+    return root
