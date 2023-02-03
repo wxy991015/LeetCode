@@ -26,4 +26,6 @@ def increasingBST(root: TreeNode) -> TreeNode:
         p = p.right
     return result.right
 
-# version 2
+# version 2 - inorder traversal
+def increasingBST(root: TreeNode) -> TreeNode:
+    pass
