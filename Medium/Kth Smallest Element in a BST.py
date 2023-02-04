@@ -17,8 +17,19 @@ def kthSmallest(root: Optional[TreeNode], k: int) -> int:
     inorder(root, nodes_collections)
     return nodes_collections[k-1]
 
-# version 2 - updated 
+# version 2 - iterative
 def kthSmallest(root: Optional[TreeNode], k: int) -> int:
-    if k == 0:
-        return root.val
-    res = kthSmallest(root.left, k-1)
+    n = 0
+    stack = []
+    current = root
+    while current and stack:
+        while current:
+            stack.append(current)
+            current = current.left
+        stack.pop()
+        current = stack.pop()
+        n += 1
+        if n == k:
+            return current.val
+        current = current.right
+    return
