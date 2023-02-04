@@ -1,5 +1,6 @@
 from typing import List
 
+# version 1 - sort
 def firstMissingPositive(nums: List[int]) -> int:
     if len(nums) == 1:
         if nums[0] <= 0:
@@ -25,5 +26,12 @@ def firstMissingPositive(nums: List[int]) -> int:
             result = sorted_nums[-1] + 1
     return result
 
-nums = [7,8,9,11,12]
-print(f"Output: {firstMissingPositive(nums)}")
+# version 2 - single loop
+def firstMissingPositive1(nums: List[int]) -> int:
+    current = 1
+    while current in nums:
+        current += 1
+    return current
+
+nums = [1,2,0]
+print(f"Output: {firstMissingPositive1(nums)}")
