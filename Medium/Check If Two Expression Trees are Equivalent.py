@@ -4,14 +4,14 @@ class Node(object):
         self.left = left
         self.right = right
 
+# version 1 - inorder traversal
 def checkEquivalence(root1: 'Node', root2: 'Node') -> bool:
     def formula(root: 'Node') -> str:
         res = ""
         if not root:
             return ""
-        res += formula(root.left) + "+" + formula(root.right)
+        res += formula(root.left) + root.val + formula(root.right)
         return res
     res1 = formula(root1)
     res2 = formula(root2)
-    print(res1, res2)
-    return sorted(res1) == sorted(res2)    
+    return sorted(res1) == sorted(res2)
