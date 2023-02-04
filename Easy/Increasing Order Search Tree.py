@@ -28,4 +28,18 @@ def increasingBST(root: TreeNode) -> TreeNode:
 
 # version 2 - inorder traversal
 def increasingBST(root: TreeNode) -> TreeNode:
-    pass
+    def nodes_collections(root: TreeNode, nodes: List[int]) -> None:
+        if not root:
+            return
+        nodes_collections(root.left, nodes)
+        nodes.append(root)
+        nodes_collections(root.right, nodes)
+    if not root: return None
+    nodes = []
+    nodes_collections(root, nodes)
+    for i in range(len(nodes)-1):
+        nodes[i].right = nodes[i+1]
+        nodes[i].left = None
+    nodes[len(nodes)-1].left = None
+    nodes[len(nodes)-1].right = None
+    return nodes[0]
