@@ -1,3 +1,4 @@
+# version 1 - center method
 def longestPalindrome(s: str) -> str:
     res = ""
     resLen = 0
