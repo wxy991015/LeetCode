@@ -28,10 +28,20 @@ def firstMissingPositive(nums: List[int]) -> int:
 
 # version 2 - single loop
 def firstMissingPositive1(nums: List[int]) -> int:
-    current = 1
-    while current in nums:
-        current += 1
-    return current
+    for i in range(len(nums)):
+        if nums[i] < 0:
+            nums[i] = 0
+    for i in range(len(nums)):
+        val = abs(nums[i])
+        if 1 <= val <= len(nums):
+            if nums[val-1] > 0:
+                nums[val-1] *= -1
+            elif nums[val-1] == 0:
+                nums[val-1] = -1 * (len(nums)+1)
+    for i in range(1, len(nums) + 1):
+        if nums[i-1] >= 0:
+            return i
+    return len(nums) + 1
 
 nums = [1,2,0]
 print(f"Output: {firstMissingPositive1(nums)}")
