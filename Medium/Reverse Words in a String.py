@@ -22,14 +22,9 @@ def reverseWords(s: str) -> str:
 # version 2 - use split method
 def reverseWords1(s: str) -> str:
     s = s.strip()
-    words = s.split(" ")
+    words = s.split()
     print(words)
-    reversed_res = ""
-    for i in range(len(words)-1, -1, -1):
-        if words[i] == "":
-            continue
-        reversed_res += words[i] + " "
-    reversed_res = reversed_res.strip()
+    reversed_res = " ".join(words[::-1])
     return reversed_res
 
 s = "a good   example"
