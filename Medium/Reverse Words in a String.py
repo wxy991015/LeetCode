@@ -23,7 +23,6 @@ def reverseWords(s: str) -> str:
 def reverseWords1(s: str) -> str:
     s = s.strip()
     words = s.split()
-    print(words)
     reversed_res = " ".join(words[::-1])
     return reversed_res
 
