@@ -15,7 +15,5 @@ def sumOfNumberAndReverse(num: int) -> bool:
             return True
     return False
 
-
-
 num = 443
 print(f"Output: {sumOfNumberAndReverse(num)}")
