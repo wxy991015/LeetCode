@@ -1,5 +1,6 @@
 from typing import List
 
+# version 1: double loop
 def merge(intervals: List[List[int]]) -> List[List[int]]:
     if len(intervals) == 1:
         return intervals
@@ -16,6 +17,18 @@ def merge(intervals: List[List[int]]) -> List[List[int]]:
             current = [current[0], max(end_point)]
         res.append([current[0], max(end_point)])
         i = j
+    return res
+
+# version 2: update sort & loop
+def merge(intervals: List[List[int]]) -> List[List[int]]:
+    intervals.sort()
+    res = [intervals[0]]
+    for start, end in intervals:
+        last = res[-1][1]
+        if start <= last:
+            res[-1][1] = max(last, end)
+        else:
+            res.append([start,end])
     return res
 
 intervals = [[1,4],[5,6]]
