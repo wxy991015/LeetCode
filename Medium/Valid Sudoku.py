@@ -1,36 +1,42 @@
 from typing import List
 
 def isValidSudoku(board: List[List[str]]) -> bool:
+    # row check
     for i in range(len(board)):
         row_bucket = [0] * 9
-        column_bucket = [0] * 9
         for j in range(len(board[i])):
             if board[i][j] != ".":
-                row_bucket[ord(board[i][j])-"0"] += 1
-                if row_bucket[ord(board[i][j]-"0")] > 1:
+                row_bucket[ord(board[i][j])-ord("0")-1] += 1
+                if row_bucket[ord(board[i][j])-ord("0")-1] > 1:
                     return False
-                column_bucket[ord(board[j][i])-"0"] += 1
-                if column_bucket[ord(board[j][i])-"0"] > 1:
+    # column check
+    for j in range(len(board)):
+        col_bucket = [0] * 9
+        for i in range(len(board[j])):
+            if board[i][j] != ".":
+                col_bucket[ord(board[i][j])-ord("0")-1] += 1
+                if col_bucket[ord(board[i][j])-ord("0")-1] > 1:
+                    # print(col_bucket[ord(board[i][j])-ord("0")-1])
                     return False
-    left_diagonal = [0] * 9
+    # 3 * 3 square
+    boxes = [set() for _ in range(len(board))]
     for i in range(len(board)):
-        left_diagonal[ord(board[i][i])-"0"] += 1
-        if left_diagonal[ord(board[i][i])-"0"] > 1:
-            return False
-    right_diagonal = [0] * 9
-    for i in range(len(board)):
-        right_diagonal[ord(board[i][len(board)-i-1])] += 1
-        if right_diagonal[ord(board[i][len(board)-i-1])] > 1:
-            return False
+        for j in range(len(board)):
+            if board[i][j] == ".":
+                continue
+            idx = (i // 3) * 3 + j // 3
+            if board[i][j] in boxes[idx]:
+                return False
+            boxes[idx].add(board[i][j])
     return True
 
-board = [["5","3",".",".","7",".",".",".","."]
-,["6",".",".","1","9","5",".",".","."]
-,[".","9","8",".",".",".",".","6","."]
-,["8",".",".",".","6",".",".",".","3"]
-,["4",".",".","8",".","3",".",".","1"]
-,["7",".",".",".","2",".",".",".","6"]
-,[".","6",".",".",".",".","2","8","."]
-,[".",".",".","4","1","9",".",".","5"]
-,[".",".",".",".","8",".",".","7","9"]]
+board = [[".",".",".",".",".",".",".",".","2"],
+         [".",".",".",".",".",".","6",".","."],
+         [".",".","1","4",".",".","8",".","."],
+         [".",".",".",".",".",".",".",".","."],
+         [".",".",".",".",".",".",".",".","."],
+         [".",".",".",".","3",".",".",".","."],
+         ["5",".","8","6",".",".",".",".","."],
+         [".","9",".",".",".",".","4",".","."],
+         [".",".",".",".","5",".",".",".","."]]
 print(f"Output: {isValidSudoku(board)}")
