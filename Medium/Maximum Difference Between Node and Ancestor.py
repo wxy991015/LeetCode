@@ -7,21 +7,20 @@ class TreeNode:
         self.right = right
 
 def maxAncestorDiff(root: Optional[TreeNode]) -> int:
-    nodes = []
-    def nodesCollections(root: Optional[TreeNode], nodes: List[int]) -> None:
-        if root:
-            nodesCollections(root.left, nodes)
-            nodes.append(root.val)
-            nodesCollections(root.right, nodes)
-    nodesCollections(root, nodes)
-    print(nodes)
-    root_val = root.val
-    root_index = nodes.index(root_val)
-    left_nodes = nodes[0:root_index+1]
-    right_nodes = nodes[root_index:]
-    left_max = max(left_nodes) - min(left_nodes)
-    right_max = max(right_nodes) - min(right_nodes)
-    return max(left_max, right_max)
+    def dfs(root: Optional[TreeNode], max_val: int, min_val: int):
+        nonlocal res
+        res = max(abs(root.val-max_val), abs(root.val-min_val), res)
+        max_val = max(max_val, root.val)
+        min_val = min(min_val, root.val)
+        if root.left:
+            dfs(root.left, max_val, min_val)
+        if root.right:
+            dfs(root.right, max_val, min_val)
+    res = 0
+    max_val = min_val = root.val
+    dfs(root, max_val, min_val)
+    return res
+        
 
 root = TreeNode(8)
 root.left = TreeNode(3)
