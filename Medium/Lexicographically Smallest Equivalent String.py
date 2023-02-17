@@ -15,6 +15,7 @@ def smallestEquivalentString(s1: str, s2: str, baseStr: str) -> str:
             sub_rules = {current_s1, current_s2}
             rules.append(sub_rules)
     print(rules)
+    
     for i in range(len(baseStr)):
         current = baseStr[i]
         j = 0
