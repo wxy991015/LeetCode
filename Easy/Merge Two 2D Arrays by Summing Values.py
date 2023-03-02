@@ -1,5 +1,6 @@
 from typing import List
 
+# version 1 - merge sort
 def mergeArrays(nums1: List[List[int]], nums2: List[List[int]]) -> List[List[int]]:
     res = []
     i, j = 0, 0
@@ -22,6 +23,18 @@ def mergeArrays(nums1: List[List[int]], nums2: List[List[int]]) -> List[List[int
         j += 1
     return res
 
-nums1 = [[2,4],[3,6],[5,5]]
-nums2 = [[1,3],[4,3]]
-print(f"Output: {mergeArrays(nums1, nums2)}")
+# version 2 - dictionary (much faster)
+def mergeArrays1(nums1: List[List[int]], nums2: List[List[int]]) -> List[List[int]]:
+    mergedNums = dict()
+    for i in range(len(nums1)):
+        mergedNums[nums1[i][0]] = nums1[i][1]
+    for i in range(len(nums2)):
+        if nums2[i][0] in mergedNums:
+            mergedNums[nums2[i][0]] += nums2[i][1]
+        else:
+            mergedNums[nums2[i][0]] = nums2[i][1]
+    return sorted(list(mergedNums.items()))       
+
+nums1 = [[1,2],[2,3],[4,5]]
+nums2 = [[1,4],[3,2],[4,1]]
+print(f"Output: {mergeArrays1(nums1, nums2)}")
