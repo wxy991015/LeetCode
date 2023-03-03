@@ -2,7 +2,6 @@ from typing import List
 
 def oddString(words: List[str]) -> str:
     differences = []
-    flag = False
     for i in range(len(words)):
         word = words[i]
         difference = []
@@ -10,12 +9,12 @@ def oddString(words: List[str]) -> str:
             d = ord(word[j]) - ord(word[j-1])
             difference.append(d)
         if difference in differences:
-            flag = True
-        else:
-            if flag:
-                return word
+            if difference == differences[0]:
+                return differences[1]
             else:
-                differences.append(difference)
+                return differences[0]
+        else:
+            differences.append(difference)
     return ""
 
 words = ["aaa","bob","ccc","ddd"]
