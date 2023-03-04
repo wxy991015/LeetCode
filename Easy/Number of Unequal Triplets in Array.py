@@ -1,4 +1,5 @@
 from typing import List
+import math
 
 # version 1 - triple loop
 def unequalTriplets(nums: List[int]) -> int:
@@ -11,5 +12,18 @@ def unequalTriplets(nums: List[int]) -> int:
                         res += 1
     return res
 
-nums = [1,1,1,1,1]
-print(f"Output: {unequalTriplets(nums)}")
+# version 2 - hashmap
+def unequalTriplets1(nums: List[int]) -> int:
+    numsDict = dict()
+    for i in range(len(nums)):
+        numsDict[nums[i]] = numsDict.get(nums[i], 0) + 1
+    size = len(numsDict)
+    if size < 3:
+        return 0
+    res = math.factorial(len(numsDict)) // (math.factorial(3) * math.factorial(len(numsDict)-3))
+    for key in numsDict:
+        res *= numsDict[key]
+    return res
+
+nums = [4,4,2,4,3]
+print(f"Output: {unequalTriplets1(nums)}")
