@@ -1,5 +1,6 @@
 from typing import List
 
+# version 1 - brute force
 def twoSumLessThanK(nums: List[int], k: int) -> int:
     nums.sort()
     if len(nums) == 1 or nums[0] + nums[1] >= k:
@@ -14,8 +15,21 @@ def twoSumLessThanK(nums: List[int], k: int) -> int:
             else:
                 res = max(res, val)
     return res
-        
 
-nums = [10,20,30]
-k = 15
-print(f"Output: {twoSumLessThanK(nums, k)}")
+# version 2 - binary search
+def twoSumLessThanK1(nums: List[int], k: int) -> int:
+    nums.sort()
+    res = -1
+    i, j = 0, len(nums) - 1
+    while i < j:
+        val = nums[i] + nums[j]
+        if val >= k:
+            j -= 1
+        elif val < k:
+            res = max(res, val)
+            i += 1
+    return res 
+
+nums = [34,23,1,24,75,33,54,8]
+k = 60
+print(f"Output: {twoSumLessThanK1(nums, k)}")
