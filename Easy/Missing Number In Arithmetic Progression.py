@@ -10,7 +10,6 @@ def missingNumber(arr: List[int]) -> int:
         if arr[i] != res:
             return res
         res += commonDiff
-    return -1
 
 arr = [15,13,12]
 print(f"Output: {missingNumber(arr)}")
