@@ -13,10 +13,16 @@ def pickGifts(gifts: List[int], k: int) -> int:
 
 # priority queue & heap method
 def pickGifts1(gifts: List[int], k: int) -> int:
-    queueGifts = PriorityQueue()
-    for i in gifts:
-        queueGifts.put(i)
-    print(queueGifts.top())
+    heapGifts = [-i for i in gifts]
+    heapq.heapify(heapGifts)
+    while k != 0:
+        currMax = -heapq.heappop(heapGifts)
+        currMax = int(math.sqrt(currMax))
+        heapq.heappush(heapGifts, -currMax)
+        k -= 1
+    heapGifts = [-i for i in heapGifts]
+    return sum(heapGifts)
+    
 
 gifts = [25,64,9,4,100]
 k = 4
