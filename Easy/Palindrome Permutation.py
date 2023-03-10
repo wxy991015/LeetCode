@@ -1,3 +1,6 @@
+from collections import Counter
+
+# bucket method
 def canPermutePalindrome(s: str) -> bool:
     chrBucket = [0] * 26
     for i in range(len(s)):
@@ -11,5 +14,16 @@ def canPermutePalindrome(s: str) -> bool:
                 return False
     return True
 
+# collections.Counter package
+def canPermutePalindrome1(s: str) -> bool:
+    counts = Counter(s)
+    oddCount = 0
+    for key in counts:
+        if counts[key] % 2 == 1:
+            oddCount += 1
+            if oddCount > 1:
+                return False
+    return True
+
 s = "carerac"
-print(f"Output: {canPermutePalindrome(s)}")
+print(f"Output: {canPermutePalindrome1(s)}")
