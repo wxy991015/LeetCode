@@ -1,6 +1,9 @@
 from typing import List
 import math
+from queue import PriorityQueue
+import heapq
 
+# sort & max method
 def pickGifts(gifts: List[int], k: int) -> int:
     while k != 0:
         currMax = max(gifts)
@@ -8,6 +11,13 @@ def pickGifts(gifts: List[int], k: int) -> int:
         k -= 1
     return sum(gifts)
 
-gifts = [1,1,1,1]
+# priority queue & heap method
+def pickGifts1(gifts: List[int], k: int) -> int:
+    queueGifts = PriorityQueue()
+    for i in gifts:
+        queueGifts.put(i)
+    print(queueGifts.top())
+
+gifts = [25,64,9,4,100]
 k = 4
-print(f"Output: {pickGifts(gifts, k)}")
+print(f"Output: {pickGifts1(gifts, k)}")
