@@ -1,21 +1,19 @@
 from typing import List
 
 def oddString(words: List[str]) -> str:
-    differences = []
+    differenceArrays = []
     for i in range(len(words)):
         word = words[i]
         difference = []
         for j in range(1, len(word)):
-            d = ord(word[j]) - ord(word[j-1])
-            difference.append(d)
-        if difference in differences:
-            if difference == differences[0]:
-                return differences[1]
+            difference.append(ord(word[j])-ord(word[j-1]))
+        if not difference in differenceArrays:
+            if len(differenceArrays) <= 1:
+                differenceArrays.append(difference)
             else:
-                return differences[0]
-        else:
-            differences.append(difference)
-    return ""
+                if difference == differenceArrays[0]:
+                    return di
+           
 
 words = ["aaa","bob","ccc","ddd"]
 print(f"Output: {oddString(words)}")
