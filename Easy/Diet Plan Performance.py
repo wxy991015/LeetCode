@@ -5,7 +5,7 @@ def dietPlanPerformance(calories: List[int], k: int, lower: int, upper: int) -> 
     currSum, currStart = 0, 0
     currCount = 0
     res = 0
-    for i in range(size-1):
+    for i in range(size-k):
         if currCount != k:
             currSum += calories[i]
             currCount += 1
@@ -16,9 +16,9 @@ def dietPlanPerformance(calories: List[int], k: int, lower: int, upper: int) -> 
                 res += 1
             currSum -= calories[currStart] - calories[i+1]
             currStart += 1
-    if currSum < k:
+    if currSum < lower:
         res -= 1
-    elif currSum > k:
+    elif currSum > upper:
         res += 1
     return res
 
